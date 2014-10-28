@@ -1,17 +1,12 @@
+
 chrome.commands.onCommand.addListener(function(command) {
-	//alert("HI,addListener3");
-  //alert("onCommand event received for message2: "+command);
-  console.log("--------------");
 	chrome.tabs.query
   (
     {active:true},
     function(tab)
     {
-    	console.log("9999");
-    	
       if(tab[0].url.substring(0, 21) != 'http://www.flickr.com' & tab[0].url.substring(0, 22) != 'https://www.flickr.com')
       {
-        //self.show();
         console.log("not flickr page");
         return;
       }
@@ -26,17 +21,9 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 chrome.runtime.onMessage.addListener(function(msg, _, sendResponse) 
 {
- 	log(msg.content);
-  // If we don't return anything, the message channel will close, regardless
-  // of whether we called sendResponse.
+ 	var st =$('<p />').html(msg.content); //document.createElement('p');
+ 	var tt=st.find(".main-photo");
+ 	var mainsrc=tt[0].attributes["src"].value.substring(2);
+ 	alert("main photo="+mainsrc);
 });
 
-function log(str) {
-  console.log(str);
-  //logDiv.innerHTML += str + "<br>";
-}
-chrome.commands.getAll(function(commands){
-  //alert("HI,getAll");
-  
-  //console.log(commands)
-})
