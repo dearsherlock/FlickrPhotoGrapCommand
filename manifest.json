@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "background": {
     "scripts": ["jquery-1.11.1.min.js","background.js"],
-    "persistent": false
+    "persistent": true
   },
   "browser_action": {
     "default_popup": "browser_action.html"
