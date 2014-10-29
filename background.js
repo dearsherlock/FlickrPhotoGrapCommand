@@ -41,7 +41,7 @@ chrome.commands.onCommand.addListener(function(command) {
         
     });
     
-		chrome.tabs.update(previousTab, {selected: true});
+		//chrome.tabs.update(previousTab, {selected: true});
 		chrome.tabs.query
 	  (
 	    {active:true},
@@ -70,12 +70,15 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 chrome.runtime.onMessage.addListener(function(msg, _, sendResponse) 
 {
+	if(window.localStorage['test-data']){
+		console.log("last access:"+window.localStorage['test-data']);
+	}
  	var st =$('<p />').html(msg.content); //document.createElement('p');
  	var tt=st.find(".main-photo");
  	var mainsrc=tt[0].attributes["src"].value.substring(2);
- 
+ 	
  	window.localStorage['test-data']=mainsrc;
- 	console.log("--finish--");
+ 	console.log("--finish--"+mainsrc);
  	//alert("main photo="+mainsrc);
 });
 
